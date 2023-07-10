@@ -1,5 +1,66 @@
 <?php 
-    include "layouts/nav_sidebar.php";
+    
+    include "dbconnect.php";
+
+    $sql = "SELECT * FROM categories";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+
+    $categories = $stmt->fetchAll();
+
+
+    
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+   
+        $title = $_POST['title'];
+        $category_id = $_POST['category_id'];
+        $user_id = 2;
+        $desc =$_POST['desc'];
+
+        
+        $photo_arr = $_FILES['photo'];
+
+        // echo "$title and $category_id and $user_id and $desc";
+
+        // print_r ($photo_arr);
+
+
+        if (isset($photo_arr) && $photo_arr ['size'] >0) {
+            $dir = 'images/';
+            $photo = $dir.$photo_arr['name'];
+
+            $tmp_name = $photo_arr ['tmp_name'];
+            move_uploaded_file($tmp_name , $photo);
+        };
+
+
+        $sql = "INSERT INTO posts (title,category_id,user_id,photo,description) VALUES (:title,:category,:user,:photo,:description)";
+
+        $stmt = $conn->prepare($sql);
+
+        $stmt->bindParam(':title',$title);
+        $stmt->bindParam(':category',$category_id);
+        $stmt->bindParam(':user',$user_id);
+        $stmt->bindParam(':photo',$photo);
+        $stmt->bindParam(':description',$desc);
+
+
+        $stmt->execute();
+
+        header ("location:post_create.php");
+        exit;
+
+    }else{
+
+        include "layouts/nav_sidebar.php";
+    }
+
+
+
+        
+
+
 ?>
 
 <main>
@@ -18,30 +79,50 @@
                            
                        
 
-                            <form action="" method="post" class="m-2">
+                            <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post"  enctype="multipart/form-data"    class="m-2">
 
-                                    <label for="name" class="form-label">Title</label>
+                                    <label for="title" class="form-label">Title</label>
                                     <input type="text" name="title" id="title" class="form-control">
 
                                     <div class="my-3">
-                                        <label for="file" class="form-label">Photo</label>
-                                        <input type="file" name="file" id="file" class="form-control">
+                                        <label for="photo" class="form-label">Photo</label>
+                                        <input type="file" name="photo" id="photo" class="form-control">
                                     </div>
 
-                                    <label for="" class="form-label "> Category</label>
+                                    <label for="category_id" class="form-label "> Category</label>
                                     <br>
 
-                                    <select name="category" id="category" class="form-select">
+                                    <select name="category_id" id="category_id" class="form-select">
                                             <option value="">Select Category</option>
+
+                                            <?php 
+                                    
+                                    foreach ($categories as $category) {
+                                    
+                                    
+                                
+                                ?>
+
+                                <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
+
+                                <?php 
+                                
+                                    }
+                                ?>
                                     </select>
+
+                                  
 
                                     <label for="desc" class="form-label mt-2">Description</label>
                                     <textarea name="desc" id="desc" class="w-100"></textarea>
+
+
+                                    <button class="btn btn-primary w-100" type="submit" >Submit</button>
                                     
 
                             </form>
 
-                        <div class="btn btn-primary m-2">Submit</div>
+                        
                     </div>
                 </main>
 
