@@ -20,9 +20,12 @@
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
 
-                <!-- For summer note -->
+                
 
                 <script>
+
+
+// <!-- For summer note -->
                     $('#desc').summernote({
                         placeholder: 'Hello stand alone ui',
                         tabsize: 2,
@@ -37,6 +40,25 @@
                         ['view', ['fullscreen', 'codeview', 'help']]
                         ]
                     });
+
+
+// for delete
+
+                    
+                    $(document).ready(function(){
+                        $('tbody').on('click','.delete',function(){
+                            let id = $(this).data('id');
+                            console.log(id);
+
+                            $('#del_id').val(id);
+                            $("#deletemodel").modal('show');
+
+                        });
+
+
+                    });
+
+
             </script>
     </body>
 </html>
