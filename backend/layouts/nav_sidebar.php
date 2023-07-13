@@ -64,6 +64,11 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Tables
                             </a>
+
+                            <a class="nav-link" href="users.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                Users
+                            </a>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">

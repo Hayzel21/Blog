@@ -51,7 +51,7 @@
                             console.log(id);
 
                             $('#del_id').val(id);
-                            $("#deletemodel").modal('show');
+                            $("#deletemodal").modal('show');
 
                         });
 
