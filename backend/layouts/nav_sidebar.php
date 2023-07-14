@@ -60,15 +60,23 @@
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-table-list"></i></div>
                                 Posts
                             </a>
+
+                            <a class="nav-link" href="users.php">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-users"></i></div>
+                                Users
+                            </a>
+
                             <a class="nav-link" href="tables.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Tables
                             </a>
 
-                            <a class="nav-link" href="users.php">
+                            <a class="nav-link" href="categories.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Users
+                                Catagories
                             </a>
+
+                            
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">

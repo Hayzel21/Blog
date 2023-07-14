@@ -93,8 +93,28 @@
                    <label for="password" class="form-label my-3">Password</label>
                    <input type="password" name="password" id="password" class="form-control" value="<?= $user['password'] ?>">
 
-                   <label for="profile" class="form-label my-3">Profile</label>
-                   <input type="file" name="profile" id="profile" class="form-control" value="<?=  $user['profile']?>">
+                   <nav class="my-3">
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <button class="nav-link active" id="nav-photo-tab" data-bs-toggle="tab" data-bs-target="#nav-photo" type="button" role="tab" aria-controls="nav-photo" aria-selected="true">Photo</button>
+
+                            <button class="nav-link" id="nav-new_photo-tab" data-bs-toggle="tab" data-bs-target="#nav-new_photo" type="button" role="tab" aria-controls="nav-new_photo" aria-selected="false">New Photo</button>
+
+                            
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+
+                        <div class="tab-pane fade show active" id="nav-photo" role="tabpanel" aria-labelledby="nav-photo-tab" tabindex="0">
+                            <img src="<?= $users['profile'] ?>" alt="">
+                        </div>
+
+                        <div class="tab-pane fade" id="nav-new_photo" role="tabpanel" aria-labelledby="nav-new_photo-tab" tabindex="0">
+                            <input type="file" name="profile" id="profile" class="form-control mt-3" value="<?=  $user['profile']?>">
+                        </div>
+
+
+                    </div>
+                   
 
                    <button type="submit" class="btn btn-primary mt-5 mb-3 w-100">Update</button>
 
